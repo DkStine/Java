@@ -1,24 +1,22 @@
 package Chapter2;
 
-import java.util.Scanner;
+// import java.util.Scanner;
 public class PracticeSet {
     public static void main(String[] args) {
         // float a = 7 / 4 * 9 / 2;
         // System.out.println(a);
 
-        Scanner in = new Scanner(System.in);
+        // Encryption
+        char grade = 'B';
 
-        float grade = in.nextFloat();
-        in.close();
+        grade = (char)(grade + 8);
 
-        System.out.print("Encrypted grade is: ");
+        System.out.println("The encrypted grade is: " + grade);
 
-        float encryptGrade = grade + 8;
-        System.out.println(encryptGrade);
-        
-        float decryptGrade = encryptGrade - 8;
-        System.out.print("Decrypted grade is: ");
-        System.out.print(decryptGrade);
+        // Decryption
+        char decryptGrade = (char)(grade - 8);
+
+        System.out.println("The decrypted grade is: " + decryptGrade);
 
     }
 }
