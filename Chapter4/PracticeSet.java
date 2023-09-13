@@ -33,6 +33,9 @@ public class PracticeSet {
 
         // byte wDay = in.nextByte();
         // in.close();   --> Easy question
+        int userScore = 0, sysScore = 0;
+        System.out.println(userScore);
+        System.out.println(sysScore);
 
 
 
