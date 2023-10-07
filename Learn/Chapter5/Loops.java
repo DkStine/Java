@@ -1,5 +1,5 @@
 package Chapter5;
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class Loops {
     public static void main(String[] args) {
