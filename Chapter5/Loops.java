@@ -20,16 +20,21 @@ public class Loops {
         // } while (i <= 10);
 
         // --> for loop
-        int n;
-        Scanner in = new Scanner(System.in);
+        
+        // for (int i = 0; i <= n; i++){
+            //     System.out.println(2*i + 1);
+            //     }
+            
+            int n;
+            Scanner in = new Scanner(System.in);
+            
+            System.out.println("Start");
+            n = in.nextInt();
+            in.close();
 
-        n = in.nextInt();
-        in.close();
-
-        for (int i = 1; i <= n; i++){
-            if (i % 2 != 0) {
-                System.out.println(i);
+            for(int i = n; i != 0; i--){
+                System.out.print(i + " ");
             }
+            
         }
     }
-}
