@@ -1,4 +1,4 @@
-package Learn.Chapter7;
+package Chapter7;
 
 public class PracticeSet {
     static void multiTable(int n){
