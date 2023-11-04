@@ -10,7 +10,10 @@ class Library{
     }
 
     public void addBook(String book) {
-        availableBooks[bookNo] = book;
+        while (bookNo <= 9) {
+            availableBooks[bookNo] = book;
+            break;
+        }
         bookNo++;
     }
     public void showAvailableBooks() {
@@ -18,6 +21,7 @@ class Library{
             for (String j : issuedBooks) {
                 if (i != j) {
                     System.out.println(i);
+                    break;
                 }
             }
         }
@@ -25,13 +29,20 @@ class Library{
     public void issueBook(String book) {
         issuedBooks[issuedBooks.length] = book;
     }
-    public void returnBook(String book) {
-        
-    }
 }
 
 public class OnlineLibrary {
     public static void main(String[] args) {
+        Library lib = new Library();
+
+        lib.addBook("Kidnapped");
+        lib.addBook("The Adventures");
+        lib.addBook("The Lost City");
+        lib.addBook("Tom Sawyer");
+
+        lib.showAvailableBooks();
         
+        lib.issueBook("Tom Sawyer");
+        lib.showAvailableBooks();
     }
 }
