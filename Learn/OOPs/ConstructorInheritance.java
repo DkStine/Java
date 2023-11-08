@@ -28,6 +28,6 @@ class GrandChild extends Child{
 
 public class ConstructorInheritance {
     public static void main(String[] args) {
-        GrandChild gc = new GrandChild(23, 34, 78);
+        // GrandChild gc = new GrandChild(23, 34, 78);
     }
 }
