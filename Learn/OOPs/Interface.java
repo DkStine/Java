@@ -21,7 +21,6 @@ interface MusicPlayer {
     void playMusic();
     void pauseMusic();
 }
-
 class MySmartPhone extends MyCellPhone implements Wifi, Camera, MusicPlayer {
     @Override
     public String[] showAvailableNetworks() {
@@ -50,8 +49,36 @@ class MySmartPhone extends MyCellPhone implements Wifi, Camera, MusicPlayer {
     }
 }
 
+interface SampleParent {
+    void meth1();
+    void meth2();
+}
+interface SampleChild extends SampleParent {
+    void meth3();
+    void meth4();
+}
+class InterfaceInherit implements SampleChild {
+    @Override
+    public void meth1() {
+        System.out.println("This is meth1");
+    }
+    @Override
+    public void meth2() {
+        System.out.println("This is meth2");
+    }
+    @Override
+    public void meth3() {
+        System.out.println("This is meth3");
+    }
+    @Override
+    public void meth4() {
+        System.out.println("This is meth4");
+    }
+}
+
 public class Interface {
     public static void main(String[] args) {
+        // Interfaces
         MySmartPhone xiaomi = new MySmartPhone();
         xiaomi.showAvailableNetworks();
         xiaomi.connectNetwork("T2-502");
@@ -59,5 +86,12 @@ public class Interface {
         xiaomi.pickCall();
         xiaomi.playMusic();
         xiaomi.pauseMusic();
+
+        // Interface Inheritance
+        InterfaceInherit ii = new InterfaceInherit();
+        ii.meth1();
+        ii.meth2();
+        ii.meth3();
+        ii.meth4();
     }
 }
