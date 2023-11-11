@@ -1,33 +1,38 @@
 class Library{
     private String[] availableBooks;
-    private int bookNo = 0;
-    private String[] issuedBooks;
+    private int bookNo;
+    
 
     Library() {
-        availableBooks = new String[10];
-        issuedBooks = new String[10];
-        System.out.println("Library under development, only 10 books can be added and issued as of now...");
+        this.availableBooks = new String[100];
+        this.bookNo = 0;
     }
 
     public void addBook(String book) {
-        while (bookNo <= 9) {
-            availableBooks[bookNo] = book;
-            break;
-        }
+        availableBooks[bookNo] = book;
+        System.out.println(book + " added successfully!");
         bookNo++;
     }
     public void showAvailableBooks() {
-        for (String i : availableBooks) {
-            for (String j : issuedBooks) {
-                if (i != j) {
-                    System.out.println(i);
-                    break;
-                }
+        for (String b : this.availableBooks) {
+            if (b == null) {
+                continue;
             }
+            System.out.println("* " + b);
         }
     }
     public void issueBook(String book) {
-        issuedBooks[issuedBooks.length] = book;
+        for (int i = 0; i < this.availableBooks.length; i++) {
+            if (book == this.availableBooks[i]) {
+                System.out.println(book + " has been issued!");
+                this.availableBooks[i] = null;
+                return;
+            }
+        }
+        System.out.println(book + " doesn't exist");
+    }
+    public void returnBook(String book) {
+        addBook(book);
     }
 }
 
@@ -41,8 +46,10 @@ public class OnlineLibrary {
         lib.addBook("Tom Sawyer");
 
         lib.showAvailableBooks();
-        
-        lib.issueBook("Tom Sawyer");
+        lib.issueBook("Kidnapped");
         lib.showAvailableBooks();
+        lib.returnBook("Kidnapped");
+        lib.showAvailableBooks();
+        
     }
 }
