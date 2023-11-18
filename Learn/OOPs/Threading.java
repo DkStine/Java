@@ -1,7 +1,7 @@
 class Cooking extends Thread {
     @Override
     public void run() {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 10000; i++) {
             System.out.println("Cooking...");
         }
     }
@@ -9,7 +9,7 @@ class Cooking extends Thread {
 class Coding extends Thread {
     @Override
     public void run() {
-        for(int i = 1; i <= 10; i++) {
+        for(int i = 1; i <= 10000; i++) {
             System.out.println("Coding now...");
         }
     }
@@ -17,7 +17,7 @@ class Coding extends Thread {
 class Chatting extends Thread {
     @Override
     public void run() {
-        for(int i = 1; i <= 10; i++) {
+        for(int i = 1; i <= 10000; i++) {
             System.out.println("Chatting with girlfriend...");
         }
     }
