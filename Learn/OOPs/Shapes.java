@@ -5,10 +5,10 @@ interface Dimension {
     void volume();
 }
 
-class Square implements Dimension {
+class Square1 implements Dimension {
     public int length;
     
-    Square(int l) {
+    Square1(int l) {
         this.length = l;
     }
 
@@ -21,10 +21,10 @@ class Square implements Dimension {
         System.out.println("It's 2D, thus volume doesn't exist.");
     }
 }
-class Rectangle extends Square {
+class Rectangle1 extends Square1 {
     private int breadth;
     
-    Rectangle(int l, int b) {
+    Rectangle1(int l, int b) {
         super(l);
         this.breadth = b;
     }
@@ -38,10 +38,10 @@ class Rectangle extends Square {
         System.out.println("It's 2D, thus volume doesn't exist.");
     }
 }
-class Circle implements Dimension {
+class Circle1 implements Dimension {
     public int radius;
 
-    Circle(int r) {
+    Circle1(int r) {
         this.radius = r;
     }
 
@@ -54,10 +54,10 @@ class Circle implements Dimension {
         System.out.println("2D, hence no volume.");
     }
 }
-class Cylinder extends Circle {
+class Cylinder1 extends Circle1 {
     public int height;
 
-    Cylinder(int r, int h) {
+    Cylinder1(int r, int h) {
         super(r);
         this.height = h;
     }
@@ -74,6 +74,7 @@ class Cylinder extends Circle {
 
 public class Shapes {
     public static void main(String[] args) {
-        
+        Rectangle1 rec = new Rectangle1(13, 4);
+        rec.area();
     }
 }
