@@ -20,20 +20,22 @@ public class ProgAssn4 {
         // System.out.println("\nThe sum of the numbers is: " + sum);
 
         // Q2
-        // System.out.print("Enter the number: ");
-        // int num = in.nextInt();
-        // int sumOfDigits = 0;
+        /* 
+        System.out.print("Enter the number: ");
+        int num = in.nextInt();
+        int sumOfDigits = 0;
 
-        // while (num != 0) {
-        //     sumOfDigits += num % 10;
-        //     num /= 10;
-        // }
+        while (num != 0) {
+            sumOfDigits += num % 10;
+            num /= 10;
+        }
 
-        // if (sumOfDigits % 9 == 0) {
-        //     System.out.println("Is divisible by 9");
-        // } else {
-        //     System.out.println("Not divisible");
-        // }
+        if (sumOfDigits % 9 == 0) {
+            System.out.println("Is divisible by 9");
+        } else {
+            System.out.println("Not divisible");
+        }
+        */
 
         // Q3
         // System.out.print("Enter the value of N: ");
