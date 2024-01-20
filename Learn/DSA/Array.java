@@ -3,6 +3,20 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Array {
+    static int[] createArray() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter no. of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        System.out.println("Enter the elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        sc.close();
+
+        return arr;
+    }
     static void printArray(int[] arr) {
         for (int i : arr) {
             System.out.print(i + " ");
@@ -47,6 +61,34 @@ public class Array {
             }
         }
         return ans;
+    }
+    static int maxElement(int[] arr) {
+        int max = Integer.MIN_VALUE;
+
+        for (int i : arr) {
+            if (i > max) max = i;
+        }
+        return max;
+    }
+    static void reverseArray(int[] arr) {
+        int n = arr.length;
+        // Using new array
+        /* 
+        int[] revArr = new int[n];
+        int j = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            // revArr[n - 1 - i] = arr[i]; //--> Aam zindagi
+            revArr[j++] = arr[i]; //--> Mentos zindagi
+        }
+        return revArr;
+        */
+        // In place
+        for (int i = 0; i < n / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[n - 1 - i];
+            arr[n - 1 - i] = temp;
+        }
     }
     public static void main(String[] args) {
         // Arrays_1
@@ -165,10 +207,73 @@ public class Array {
             arr[i] = sc.nextInt();
         }
         sc.close();
-
+        
         System.out.println(uniqueArrayElement(arr));
         */
-
         
+        /* 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter no. of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        sc.close();
+        
+        int x = maxElement(arr);
+        for (int j = 0; j < arr.length; j++) {
+            if (arr[j] == x) arr[j] = Integer.MIN_VALUE;
+        }
+
+        int secondMax = maxElement(arr);
+        System.out.println(secondMax);
+        */
+
+        /* 
+        int[] arr = createArray();
+        int flag = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    System.out.println(arr[i]);
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) break;
+        }
+        */
+
+        // Lecture 17
+        // Swap two variables
+        /* 
+        int a = 3, b = 9;
+        int temp = a; 
+        a = b;
+        b = temp;
+
+        System.out.println("a is " + a + " b is " + b);
+        */
+        
+        /* 
+        int a = 3, b = 9;
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+        */
+
+        // Reverse array
+        /*
+        int[] arr = createArray();
+        reverseArray(arr);
+        System.out.println("Reversed array:");
+        printArray(arr);
+        */
+
     }
 }
