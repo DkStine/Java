@@ -70,6 +70,11 @@ public class Array {
         }
         return max;
     }
+    static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
     static void reverseArray(int[] arr) {
         int n = arr.length;
         // Using new array
@@ -89,6 +94,109 @@ public class Array {
             arr[i] = arr[n - 1 - i];
             arr[n - 1 - i] = temp;
         }
+    }
+    static void reverseArray(int[] arr, int st, int end) {
+        while (st < end) {
+            swap(arr, st, end);
+            st++;
+            end--;
+        }
+    }
+    static void rotateArray(int[] arr, int k) {
+        // Extra Space
+        /* 
+        int n = arr.length;
+        k %= n;
+        int j = 0;
+        int[] rotatedArr = new int[n];
+
+        for (int i = n - k; i < n; i++) {
+            rotatedArr[j++] = arr[i];
+        }
+        for (int l = 0; l < n - k; l++) {
+            rotatedArr[j++] = arr[l];
+        }
+
+        return rotatedArr;
+       */
+        // In place
+        /* */
+        int n = arr.length;
+        k %= n;
+        reverseArray(arr, 0, n - k - 1);
+        reverseArray(arr, n - k, n - 1);
+        reverseArray(arr);
+    }
+    static int[] createFrequencyArray(int[] arr) {
+        int [] frequencyArray = new int[100001];
+        for (int i = 0; i < arr.length; i++) {
+            if (frequencyArray[arr[i]] >= 0) {
+                frequencyArray[arr[i]]++;
+            } else {
+                frequencyArray[arr[i]] = 0;
+            }
+            
+        }
+        return frequencyArray;
+    }
+    static void sortZerosAndOnes(int[] arr) {
+        int n = arr.length;
+        int leftPointer = 0;
+        int rightPointer = --n;
+
+        while (leftPointer < rightPointer) {
+            if (arr[leftPointer] == 1 && arr[rightPointer] == 0) {
+                swap(arr, leftPointer, rightPointer);
+                leftPointer++;
+                rightPointer--;
+            }
+            if (arr[leftPointer] == 0) {
+                leftPointer++;
+            }
+            if (arr[rightPointer] == 1) {
+                rightPointer--;
+            }
+        }
+    }
+    static boolean checkEven(int x) {
+        if (x % 2 == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    static void sortEvensAndOdds(int[] arr) {
+        int n = arr.length;
+        int leftPointer = 0, rightPointer = --n;
+
+        while (leftPointer < rightPointer) {
+            if (!checkEven(arr[leftPointer]) && checkEven(arr[rightPointer])) {
+                swap(arr, leftPointer, rightPointer);
+                leftPointer++;
+                rightPointer--;
+            }
+            if (checkEven(arr[leftPointer])) leftPointer++;
+            if (!checkEven(arr[rightPointer])) rightPointer--;
+        }
+    }
+    static int[] sortSquares(int[] arr) {
+        int len = arr.length;
+        int[] sortedArr = new int[len];
+        int leftPointer = 0, rightPointer = --len, k = 0;
+
+        while (leftPointer < rightPointer) {
+            if (Math.abs(arr[leftPointer]) > Math.abs(arr[rightPointer])) {
+                sortedArr[k++] = arr[leftPointer] * arr[leftPointer];
+                leftPointer++;
+            } else {
+                sortedArr[k++] = arr[rightPointer] * arr[rightPointer];
+                rightPointer--;
+            }
+        }
+
+        reverseArray(sortedArr);
+
+        return sortedArr;
     }
     public static void main(String[] args) {
         // Arrays_1
@@ -275,5 +383,96 @@ public class Array {
         printArray(arr);
         */
 
+        // Rotating arrays
+        /* Extra Space
+        int[] arr = createArray();
+        int k = 3;
+
+        int[] rotatedArr = rotateArray(arr, k);
+
+        printArray(rotatedArr);
+        */
+
+        // In place
+        /* 
+        int[] arr = createArray();
+        rotateArray(arr, 101);
+        System.out.println("The reversed array: ");
+        printArray(arr);
+        */
+
+        // Finding the presence of an element
+        /* 
+        Scanner sc = new Scanner(System.in);
+        
+        int[] arr = createArray();
+        int q = 5;
+        createFrequencyArray(arr);
+        
+        int[] freqArray = createFrequencyArray(arr);
+        while (q > 0) {
+            System.out.print("Enter element to be searched: ");
+            int x = sc.nextInt();
+            if (freqArray[x] > 0) {
+                System.out.println("Present!");
+            } else {
+                System.out.println("Absent");
+            }
+            q--;
+        }
+        sc.close();
+        */
+
+        // LECTURE 18
+        // Sort 0s and 1s in an array
+        /* --> Normal approach 
+        int[] arr = {1, 0, 1, 0, 1, 0, 1, 0};
+        int zeroCount = 0;
+        
+        printArray(arr);
+        for (int i : arr) {
+            if (i == 0) {
+                zeroCount++;
+            }
+        }
+
+        for (int j = 0; j < zeroCount; j++) {
+            arr[j] = 0;
+        }
+        for (int k = zeroCount; k < arr.length; k++) {
+            arr[k] = 1;
+        }
+        
+        printArray(arr);
+        */
+
+        /* --> Two pointer approach
+        int[] inputArr = createArray();
+        System.out.println("Original");
+        printArray(inputArr);
+        sortZerosAndOnes(inputArr);
+        System.out.println("Sorted array");
+        printArray(inputArr);
+        */
+
+        // Sort even and odd in an array
+        /* 
+        int[] arr = createArray();
+        System.out.println("Original array");
+        printArray(arr);
+        sortEvensAndOdds(arr);
+        System.out.println("Sorted array");
+        printArray(arr);
+        */
+
+        // Array of squares in non - decreasing order
+        /* 
+        int[] arr = createArray();
+        System.out.println("Original array");
+        printArray(arr);
+        int[] sortedArr = sortSquares(arr);
+        System.out.println("Sorted Array");
+        printArray(sortedArr);
+        */
     }
 }
