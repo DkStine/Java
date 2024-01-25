@@ -1,5 +1,3 @@
-package Miscellaneous;
-
 public class Q3 {
     public static void main(String[] args) {
         int randomInt, max = 6, min = 1;

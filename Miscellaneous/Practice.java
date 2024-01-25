@@ -8,5 +8,6 @@ public class Practice {
         int n = input.nextInt();
 
         System.out.println(n);
+        input.close();
     }
 }

@@ -1,5 +1,3 @@
-package Miscellaneous;
-
 public class Q7 {
     public static void main(String[] args) {
         int a = Integer.parseInt(args[0]);

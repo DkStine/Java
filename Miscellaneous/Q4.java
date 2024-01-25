@@ -1,5 +1,3 @@
-package Miscellaneous;
-
 public class Q4 {
     public static void main(String[] args) {
         double t = Double.parseDouble(args[0]);
