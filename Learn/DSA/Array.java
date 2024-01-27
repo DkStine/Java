@@ -198,6 +198,51 @@ public class Array {
 
         return sortedArr;
     }
+    static int prefixSum(int[] arr, int index) {
+        if (index == 0) return arr[0];
+        else {
+            return prefixSum(arr, index - 1) + arr[index];
+        }
+    }
+    static int[] createPrefixArray(int[] arr) {
+        int n = arr.length;
+        int[] preArr = new int[n];
+        preArr[0] = arr[0];
+        int pointer = 1;
+
+        while (pointer < n) {
+            preArr[pointer] = preArr[pointer - 1] + arr[pointer];
+            pointer++;
+        }
+
+        return preArr;
+    }
+    static boolean checkPartition(int[] arr) {
+        int n = arr.length;
+        int[] preArr = createPrefixArray(arr);
+        int flag = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (preArr[i] == preArr[n - 1] - preArr[i]) {
+                flag = 1;
+                break;
+            }
+        }
+
+        if (flag == 1) return true;
+        else return false;
+    }
+    static int[] createSuffixSumArray(int[] arr) {
+        int n = arr.length;
+        int[] suffArr = new int[n];
+        suffArr[n - 1] = arr[n - 1];
+
+        for (int i = n - 2; i >= 0; i--) {
+            suffArr[i] = arr[i] + suffArr[i + 1];
+        }
+
+        return suffArr;
+    }
     public static void main(String[] args) {
         // Arrays_1
         // Q1
@@ -474,5 +519,76 @@ public class Array {
         System.out.println("Sorted Array");
         printArray(sortedArr);
         */
+
+        // Lecture 19
+        // Prefix sum  --> Recursion
+        Scanner inputScanner = new Scanner(System.in);
+        /* 
+        int[] arr = createArray();
+        System.out.println("Enter the index: ");
+        // int index = inputScanner.nextInt();
+        int index = 3;
+        if (index >= 0 && index < arr.length) {
+            System.out.print("Prefix sum is: " + prefixSum(arr, index));
+        } else {
+            System.out.println("Enter a valid index");
+        }
+        */
+        
+        // Prefix sum --> Prefix sum array
+        /* 
+        int[] arr = createArray();
+        int[] preArr = createPrefixArray(arr);
+        printArray(preArr);
+        int index = 3;
+        if (index >= 0 && index < arr.length) {
+            System.out.print("Prefix sum is: " + preArr[index]);
+        } else {
+            System.out.println("Enter a valid index");
+        }
+        */
+
+        // Sum of values in given range 1 based indexing (1 -> r) both inclusive --> Efficient method
+        /* 
+        System.out.print("Enter no. of elements: ");
+        int n = inputScanner.nextInt();
+        int[] arr = new int[n + 1];
+        System.out.println("Enter the elements: ");
+        for (int i = 1; i <= n; i++) {
+            arr[i] = inputScanner.nextInt();
+        }
+        System.out.println("Elements added");
+        
+        int[] preArr = createPrefixArray(arr);
+        printArray(preArr);
+        
+        System.out.println("Enter no. of queries:");
+        int q = inputScanner.nextInt();
+        while (q-- > 0) {
+            System.out.println("Enter the range:");            
+            int l = inputScanner.nextInt();
+            int r = inputScanner.nextInt();
+
+            System.out.println("The prefix sum is: " + (preArr[r] - preArr[l - 1]));
+        }
+        */
+
+        // Array partitioned into 2 subarrays with equal sum
+        /* 
+        int[] arr = createArray();
+
+        System.out.println(checkPartition(arr));
+
+        */
+
+        // Suffix array
+        /* 
+        int[] arr = createArray();
+
+        System.out.println("The suffix sum array: ");
+        printArray(createSuffixSumArray(arr));
+        */
+
+        inputScanner.close();
     }
 }
