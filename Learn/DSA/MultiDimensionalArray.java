@@ -52,6 +52,28 @@ public class MultiDimensionalArray {
         }
         return productMatrix;
     }
+    static int[][] tranposeOfMatrix(int[][] matrix) {
+        int rows = matrix.length, columns = matrix[0].length;
+        int[][] trans = new int[columns][rows];
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                trans[i][j] = matrix[j][i];
+            }
+        }
+
+        return trans;
+    }
+    static void tranposeOfMatrixInPlace(int[][] matrix) {
+        int c = matrix.length;
+        int r = matrix[0].length;
+        for (int i = 0; i < c; i++) {
+            for (int j = i; j < r; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
     public static void main(String[] args) {
         // 2D Arrays
         // Matrix addition
@@ -71,5 +93,19 @@ public class MultiDimensionalArray {
         printMatrix(resultMatrix);
         */
 
+        // Transpose matrix
+        /* 
+        int[][] m = createMatrix(3, 4);
+        int[][] trans = tranposeOfMatrix(m);
+        printMatrix(m);
+        printMatrix(trans);
+        */
+        
+        // Transpose in Place
+        int[][] m = createMatrix(5, 5);
+        tranposeOfMatrixInPlace(m);
+        System.out.println("The transpose matrix");
+        printMatrix(m);
+        
     }
 }
