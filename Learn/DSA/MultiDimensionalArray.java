@@ -63,6 +63,12 @@ public class MultiDimensionalArray {
 
         return trans;
     }
+    static void swap2D(int[][] matrix, int i, int j) {
+        int n = matrix.length;
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[i][n - 1 - j];
+        matrix[i][n - 1 - j] = temp;
+    }
     static void tranposeOfMatrixInPlace(int[][] matrix) {
         int c = matrix.length;
         int r = matrix[0].length;
@@ -72,6 +78,63 @@ public class MultiDimensionalArray {
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
             }
+        }
+    }
+    static void rotateMatrix90(int[][] matrix) {
+        int n = matrix.length;
+        tranposeOfMatrixInPlace(matrix);
+        System.out.println("The transpose matrix:");
+        printMatrix(matrix);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < matrix[i].length / 2; j++) {
+                swap2D(matrix, i, j);
+            }
+        }
+    }
+    static void printPascalTriangle(int rows) {
+        int[][] pascalTriangle = new int[rows][];
+        for (int i = 0; i < rows; i++) {
+            pascalTriangle[i] = new int[i + 1]; // Jagged array creation
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || i == j) pascalTriangle[i][j] = 1;
+                else pascalTriangle[i][j] = pascalTriangle[i - 1][j - 1] + pascalTriangle[i - 1][j];
+            }
+        }
+        printMatrix(pascalTriangle);
+    }
+    static void spiralOrder(int[][] matrix, int rows, int columns) {
+        int lc = 0, rc = columns - 1, tr = 0, br = rows - 1;
+        int count = 0;
+
+        System.out.println("The elements in spiral order: ");
+        while (count < rows * columns) {
+            // print top row
+            for (int i = lc; i <= rc; i++) {
+                System.out.print(matrix[tr][i] + " ");
+                count++;
+            }
+            tr++;
+            
+            // print right column
+            for (int j = tr; j <= br; j++) {
+                System.out.print(matrix[j][rc] + " ");
+                count++;
+            }
+            rc--;
+            
+            // print bottom row
+            for (int k = rc; k >= lc; k--) {
+                System.out.print(matrix[br][k] + " ");
+                count++;
+            }
+            br--;
+            
+            // print left column
+            for (int l = br; l >= tr; l--) {
+                System.out.print(matrix[l][lc] + " ");
+                count++;
+            }
+            lc++;
         }
     }
     public static void main(String[] args) {
@@ -102,10 +165,33 @@ public class MultiDimensionalArray {
         */
         
         // Transpose in Place
-        int[][] m = createMatrix(5, 5);
+        /* 
+        int[][] m = createMatrix(3, 3);
         tranposeOfMatrixInPlace(m);
         System.out.println("The transpose matrix");
         printMatrix(m);
+        */
+        
+        // Rotating a matrix 90 degress clockwise 
+        // Algo: Transpose the matrix -> Reverse each row's elements
+        /* 
+        int[][] m = createMatrix(3, 3);
+        rotateMatrix90(m);
+        System.out.println("The rotated matrix");
+        printMatrix(m);
+        */
+        
+        // Pascal's Triangle
+        // Algo: matrix[i][j] = matrix[i - 1][j - 1] + matrix[i - 1][j]
+        /* 
+        int rows = 5;
+        printPascalTriangle(rows);
+        */
+        
+        // Spiral Order Matrix 
+        int[][] m = createMatrix(4, 4);
+        spiralOrder(m, 4, 4);
+
         
     }
 }
