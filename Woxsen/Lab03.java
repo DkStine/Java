@@ -1,113 +1,77 @@
 import java.util.Scanner;
 
 public class Lab03 {
-    static int[][] transposeMatrix(int[][] matrix, int rows, int columns) {
-        int[][] transMatrix = new int[columns][rows];
+    static int[][] transposeMatrix(int[][] mat, int rows, int cols) {
+        int[][] transMatrix = new int[cols][rows];
 
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                transMatrix[j][i] = matrix[i][j];
+            for (int j = 0; j < cols; j++) {
+                transMatrix[j][i] = mat[i][j];
             }
         }
 
         return transMatrix;
-
+    }
+    static void printMatrix(int[][] mat) {
+        int rows = mat.length, cols = mat[0].length;
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
+        // Q1 -> WAP to find the largest element in a given array
+        int[] arr = {1, 2, 4, 8, 27, 7, 10};
+        int max = arr[0];
+        for (int i : arr) {
+            if (i > max) max = i;
+        }
+
+        System.out.println("The max element is: " + max);
+
+        // Q2 -> WAP to print an array after changing the rows and columns of a 2D array
+        int[][] matrix = {{1, 2, 3, 4},
+                        {5, 6, 7, 8}, 
+                        {9, 1, 6, 8}};
+
+        int[][] transMatrix = transposeMatrix(matrix, matrix.length, matrix[0].length);
+
+        printMatrix(transMatrix);
+
+
+        // Q3 -> WAP that prints an integer b/w 0 to 1000 and adds all the digits in the integer
+        int num = 984, sum = 0;
+
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit;
+            num /= 10;
+        }
+        System.out.println("The sum of the digits is: " + sum);
+
+        // Q4 -> WAP to print a right angled triangle and a left angled triangle
+        System.out.println("Right angled triangle: ");
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+
         Scanner in = new Scanner(System.in);
-        // Q1
-        /* */
-        int r1 = (101 + 0) / 3;
-
-        double r2 = 3.0e-6 * 10000000.1;
-
-        boolean r3 = true && true;
-        boolean r4 = false && true;
-
-        boolean r5 = (false && false) || (true && true);
-
-        System.out.println("(101 + 1 / 3) --> " + r1);
-        System.out.println("3.0e-6 * 10000000.1 --> " + r2);
-        System.out.println("true && true --> " + r3);
-        System.out.println("false && true --> " + r4);
-        System.out.println("(false && false) || (true && true) --> " + r5);
-        
-
-        // Q2
-        /* 
-        System.out.println("Enter the numbers separated by spaces: ");
-        int a = in.nextInt();
-        int b = in.nextInt();
-        int c = in.nextInt();
-        int d = in.nextInt();
-
-        if (a == b && a == c && a == d) System.out.println(true);
-        else System.out.println(false);
-        */
-
-        // Q3
-        /* 
-        boolean[][] arr = {{true, false}, {false, false, true}, {true, true, false}};
-
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-        */
-
-        // Q4
-        /* 
-        System.out.print("Enter the number of rows: ");
+        System.out.print("Enter no. of rows of Left angled triangle: ");
         int rows = in.nextInt();
-        System.out.print("Enter the number of columns: ");
-        int columns = in.nextInt();
+        in.close();
 
-        int[][] matrix = new int[rows][columns];
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                matrix[i][j] = in.nextInt();
-            }
-        }
-        
-        int[][] transMatrix = transposeMatrix(matrix, rows, columns);
-        
-        for (int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
-                System.out.print(transMatrix[i][j] + " ");
-            }
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= rows - i; j++) System.out.print("  ");
+            for (int k = 1; k <= i; k++) System.out.print("* ");
             System.out.println();
         }
-        */
 
-        // Creation of array
-        /* 
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        System.out.println(arr[7]);
-
-        // Swapping two variables
-        int a = 15, b = 74, temp;
-        System.out.printf("a = %d, b = %d\n", a, b);
-        temp = a;
-        a = b;
-        b = temp;
-        System.out.printf("a = %d, b = %d", a, b);
-        */
-        
-        // Finding the maximum element in a array
-        /* 
-        int[] arr = {10, 20, 50, 30, 70, 100};
-
-        int largestNumber = arr[0];
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > largestNumber) largestNumber = arr[i];
-        }
-
-        System.out.println("The largest number is: " + largestNumber);
-        */
     }
 }
