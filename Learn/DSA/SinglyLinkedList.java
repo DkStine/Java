@@ -1,5 +1,8 @@
 package DSA;
 
+import java.util.List;
+import java.util.Scanner;
+
 /* 
 class ListNode {
     int val;
@@ -127,7 +130,59 @@ public class SinglyLinkedList {
         }
         currNode.next = currNode.next.next;
     }
+
+    static void searchLinkedList(ListNode head, int key) {
+        if (head == null) {
+            System.out.println("Linked list is empty, unable to search");
+            return;
+        } 
+
+        ListNode currNode = head;
+        while (currNode != null) {
+            if (currNode.data == key) {
+                System.out.println("Element found");
+                return;
+            }  
+            currNode = currNode.next;
+        }
+        System.out.println("Element not found");
+    }
+
+    static ListNode reverseSLL(ListNode head) {
+        ListNode currNode = head;
+        ListNode prevNode = null;
+        ListNode nextNode = null;
+
+        while (currNode != null) {
+            nextNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        return prevNode;
+    }
+
+    static void findNthNodeFromEnd(ListNode head, int n) {
+        int indexFromStart = lengthOfSLL(head) - n;
+
+        int i = 0;
+        ListNode currNode = head;
+        while (i < indexFromStart) {
+            currNode = currNode.next;
+            i++;
+        }
+        System.out.println("The required node is: " + currNode.data + " --> ");
+    }
+    
+    static void removeDuplicates(ListNode head) {
+        ListNode currNode = head;
+        while (currNode != null && currNode.next != null) {
+            if (currNode.data == currNode.next.data) currNode.next = currNode.next.next;
+            else currNode = currNode.next;
+        }
+    }
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         // Creation of singly linked list
         /* */
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -182,6 +237,39 @@ public class SinglyLinkedList {
         deleteAtPosition(sll.head, 3);
         printSLL(sll.head);
 
+        // Searching a given element
+        /* 
+        System.out.print("Enter element to be searched: ");
+        int keyElement = in.nextInt();
+        searchLinkedList(sll.head, keyElement);
+        */
 
+        // Reversing a SLL
+        /* 
+        ListNode reversedHead = reverseSLL(sll.head);
+        printSLL(reversedHead);
+        */
+
+        // Finding nth node from the end --> that is, finding (length - n)th node from the start where indexing starts from 0
+        /* 
+        System.out.print("Enter the term no. from the end: ");
+        int n = in.nextInt();
+        findNthNodeFromEnd(sll.head, n);
+        */
+
+        // Removing Duplicate Elements from sorted LL
+        // * Making sorted LL(hardcoding)
+        SinglyLinkedList sortedLL = new SinglyLinkedList();
+        sortedLL.head = new ListNode(1);
+        int[] sortedLLElements = {2, 3, 4, 4, 5, 6, 7, 8, 9, 10};
+
+        for (int i : sortedLLElements) insertAtEnd(sortedLL.head, i);
+        System.out.println("Sorted LL");
+        printSLL(sortedLL.head);
+        // * Removing duplicate(s)
+        removeDuplicates(sortedLL.head);
+        printSLL(sortedLL.head);
+
+        in.close();
     }
 }
