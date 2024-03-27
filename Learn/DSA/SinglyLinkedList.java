@@ -180,6 +180,106 @@ public class SinglyLinkedList {
             else currNode = currNode.next;
         }
     }
+
+    static ListNode insertNodeSortedLL(ListNode head, int data) {
+        ListNode newNode = new ListNode(data);
+        if (newNode.data < head.data) {
+            ListNode modHead = insertAtStart(head, data);
+            return modHead;
+        }
+
+        ListNode currNode = head;
+        ListNode prevNode = null;
+
+        while (currNode != null && currNode.data < newNode.data) {
+            prevNode = currNode;
+            currNode = currNode.next;
+        }
+
+        newNode.next = currNode;
+        prevNode.next = newNode;
+
+        return head;
+
+    }
+
+    static ListNode removeKey(ListNode head, int key) {
+        if (key == head.data) {
+            ListNode modHead = deleteAtStart(head);
+            return modHead;
+        }
+
+        ListNode currNode = head;
+
+        while (currNode != null && currNode.next.data != key) {
+            currNode = currNode.next;
+        }
+
+        currNode.next = currNode.next.next;
+
+        return head;
+    }
+
+    static boolean detectLoop(ListNode head) {
+        ListNode slowPtr = head, fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+            if (slowPtr == fastPtr) return true;
+        }
+
+        return false;
+    }
+    
+    static ListNode removeLoop(ListNode head) {
+        if (detectLoop(head)) {
+            ListNode slowPtr = head, fastPtr = head, currPtr = head;
+
+            while (fastPtr != null && fastPtr.next != null) {
+                fastPtr = fastPtr.next.next;
+                slowPtr = slowPtr.next;
+                if (fastPtr == slowPtr) {
+                    break;
+                }
+            }
+            // System.out.println("after detection: " + slowPtr.data);
+            
+            while (currPtr.next != slowPtr.next) {
+                currPtr = currPtr.next;
+                slowPtr = slowPtr.next;
+            }
+            // System.out.println("After finding loop start: " + slowPtr.data);
+            
+            slowPtr.next = null;
+            return head;
+        }
+
+        System.out.println("Loop not detected!");
+        return head;
+    }
+    
+    static ListNode mergeSortedLL(ListNode head1, ListNode head2) {
+        ListNode dummyNode = new ListNode(0);
+        ListNode dummyTail = dummyNode;
+
+        while (head1 != null && head2 != null) {
+            if (head1.data <= head2.data) {
+                dummyTail.next = head1;
+                head1 = head1.next;
+            } else {
+                dummyTail.next = head2;
+                head2 = head2.next;
+            }
+            dummyTail = dummyTail.next;
+        }
+
+        if (head1 == null) dummyTail.next = head2;
+        if (head2 == null) dummyTail.next = head1;
+
+        return dummyNode.next;
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // Creation of singly linked list
@@ -258,17 +358,74 @@ public class SinglyLinkedList {
 
         // Removing Duplicate Elements from sorted LL
         // * Making sorted LL(hardcoding)
+        /* 
         SinglyLinkedList sortedLL = new SinglyLinkedList();
-        sortedLL.head = new ListNode(1);
-        int[] sortedLLElements = {2, 3, 4, 4, 5, 6, 7, 8, 9, 10};
+        sortedLL.head = new ListNode(5);
+        int[] sortedLLElements = {8, 10, 14, 17, 20};
 
         for (int i : sortedLLElements) insertAtEnd(sortedLL.head, i);
         System.out.println("Sorted LL");
         printSLL(sortedLL.head);
         // * Removing duplicate(s)
+        
         removeDuplicates(sortedLL.head);
         printSLL(sortedLL.head);
+        
+        // Insert node in sorted LL
+        ListNode modHead = insertNodeSortedLL(sortedLL.head, 3);
+        printSLL(modHead);
+        */
+
+        int keyData = 104;
+        ListNode modHead = removeKey(sll.head, keyData);
+        printSLL(modHead);
+
+        // Loop logics in SLL
+        /* 
+        // SLL with a loop creation
+        SinglyLinkedList loopSll = new SinglyLinkedList();
+        loopSll.head = new ListNode(10);
+
+        ListNode node2 = new ListNode(20);
+        ListNode node3 = new ListNode(30);
+        ListNode node4 = new ListNode(40);
+        ListNode node5 = new ListNode(50);
+        ListNode node6 = new ListNode(60);
+
+        loopSll.head.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        node5.next = node6;
+        node6.next = node3;
+
+        // Loop Detection -> Floyd's Rabbit - Tortoise Algo
+        System.out.println("Loop present: " + detectLoop(loopSll.head));
+        
+        // Loop removal
+        ListNode loopRemHead = removeLoop(loopSll.head);
+        printSLL(loopRemHead);
+        System.out.println("Loop present: " + detectLoop(loopRemHead));
+        */
+
+        // Merging two sorted LLs
+        SinglyLinkedList sortedLL1 = new SinglyLinkedList();
+        sortedLL1.head = new ListNode(1);
+        for (int i = 3; i <= 11; i += 2) insertAtEnd(sortedLL1.head, i);
+        System.out.println("List1");
+        printSLL(sortedLL1.head);
+        
+        SinglyLinkedList sortedLL2 = new SinglyLinkedList();
+        sortedLL2.head = new ListNode(2);
+        for (int i = 4; i <= 12; i += 2) insertAtEnd(sortedLL2.head, i);
+        System.out.println("List2");
+        printSLL(sortedLL2.head);
+
+        ListNode mergedHead = mergeSortedLL(sortedLL1.head, sortedLL2.head);
+        System.out.println("Merged 1 and 2");
+        printSLL(mergedHead);
 
         in.close();
     }
+    
 }
