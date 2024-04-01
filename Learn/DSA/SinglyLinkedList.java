@@ -280,6 +280,27 @@ public class SinglyLinkedList {
         return dummyNode.next;
     }
 
+    static ListNode addLinkedList(ListNode h1, ListNode h2) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        int carry = 0;
+
+        while (h1 != null || h2 != null) {
+            int x = (h1 != null) ? h1.data : 0;
+            int y = (h2 != null) ? h2.data : 0;
+            int sum = x + y + carry;
+            carry = sum / 10;
+            tail.next = new ListNode(sum % 10);
+            tail = tail.next;
+            if (h1 != null) h1 = h1.next;
+            if (h2 != null) h2 = h2.next;
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+
+        return dummy.next;
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // Creation of singly linked list
@@ -409,6 +430,7 @@ public class SinglyLinkedList {
         */
 
         // Merging two sorted LLs
+        /* 
         SinglyLinkedList sortedLL1 = new SinglyLinkedList();
         sortedLL1.head = new ListNode(1);
         for (int i = 3; i <= 11; i += 2) insertAtEnd(sortedLL1.head, i);
@@ -423,7 +445,21 @@ public class SinglyLinkedList {
 
         ListNode mergedHead = mergeSortedLL(sortedLL1.head, sortedLL2.head);
         System.out.println("Merged 1 and 2");
-        printSLL(mergedHead);
+        printSLL(mergedHead);*/
+
+
+        // Add two numbers in linked list
+        SinglyLinkedList numSll1 = new SinglyLinkedList();
+        numSll1.head = new ListNode(7);
+        int[] arr1 = {4, 9};
+        for (int i : arr1) insertAtEnd(numSll1.head, i);
+
+        SinglyLinkedList numSll2 = new SinglyLinkedList();
+        numSll2.head = new ListNode(5);
+        insertAtEnd(numSll2.head, 6);
+
+        ListNode sumHead = addLinkedList(numSll1.head, numSll2.head);
+        printSLL(sumHead);
 
         in.close();
     }
