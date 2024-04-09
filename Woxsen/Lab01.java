@@ -58,5 +58,6 @@ public class Lab01 {
             }
         }
         System.out.println(HCF);
+        in.close();
     }
 }
