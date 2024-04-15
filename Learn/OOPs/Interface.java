@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class MyCellPhone {
     void makeCall(String phoneNumber) {
         System.out.println("Calling..." + phoneNumber);
@@ -10,6 +12,19 @@ interface Wifi {
     String[] showAvailableNetworks();
     void connectNetwork(String network);
 }
+
+class Network implements Wifi {
+    @Override
+    public String[] showAvailableNetworks() {
+        String[] netArr = {"A", "B", "C", "502"};
+        return netArr;
+    }
+    @Override
+    public void connectNetwork(String network) {
+        System.out.println("You are connected to: " + network);
+    }
+}
+
 interface Camera {
     void takeSnap();
     void recordVideo();
@@ -78,7 +93,9 @@ class InterfaceInherit implements SampleChild {
 
 public class Interface {
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         // Interfaces
+        /* 
         MySmartPhone xiaomi = new MySmartPhone();
         xiaomi.showAvailableNetworks();
         xiaomi.connectNetwork("T2-502");
@@ -93,5 +110,15 @@ public class Interface {
         ii.meth2();
         ii.meth3();
         ii.meth4();
+        */
+
+        Network net = new Network();
+        for (String s: net.showAvailableNetworks()) {
+            System.out.print(s + " ");
+        }
+
+        System.out.print("\nEnter the network to connect: ");
+        String toConnect = in.nextLine();
+        net.connectNetwork(toConnect);
     }
 }

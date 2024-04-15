@@ -15,7 +15,7 @@ class Xiaomi extends SmartPhone {
 class Realme extends SmartPhone {
     @Override
     public void bootScreen() {
-        System.out.println("Booting Realme...");
+        System.out.println("Bootming Realme...");
     }
 }
 class Apple extends SmartPhone {
