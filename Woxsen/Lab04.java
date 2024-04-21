@@ -1,10 +1,7 @@
 import java.util.Scanner;
 
 class Person {
-    private String name;
-    private int age;
-    private String city;
-    private String country;
+    private String name; private int age; private String city; private String country;
 
     public void setName(String name) {
         this.name = name;
@@ -59,10 +56,7 @@ public class Lab04 {
         // Q1 -> Write a Java program to create a class Person with private instance variables,
         // name, age, city and country. Use getters and setters.
         Person p1 = new Person();
-        p1.setName("Rohan");
-        p1.setAge(19);
-        p1.setCity("Kolkata");
-        p1.setCountry("India");
+        p1.setName("Rohan"); p1.setAge(19); p1.setCity("Kolkata"); p1.setCountry("India");
 
         Person p2 = new Person();
         p2.setName("Mohan");
