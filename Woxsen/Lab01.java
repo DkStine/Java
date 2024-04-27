@@ -4,7 +4,7 @@ public class Lab01 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         // P1
-        /* 
+        /* */
         System.out.println("Hello World");
         
         // P2
@@ -27,15 +27,16 @@ public class Lab01 {
         if (x > 0) System.out.println("Positive");
         else if (x < 0) System.out.println("Negative");
         else System.out.println("Zero");
-        */
+        
         // P4
+        /* 
         System.out.println("Enter a number: ");
         int x = in.nextInt();
         int fact = 1;
         for (int i = x; i > 1; i--) {
             fact *= i;
         }
-        System.out.println("The factorial is: " + fact);
+        System.out.println("The factorial is: " + fact);*/
         
         // P5
         int a, b, c, d;
